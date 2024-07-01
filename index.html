@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Bot de Minecraft</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .btn {
+      padding: 10px 20px;
+      margin: 0 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Mi Bot de Minecraft</h1>
+    <div>
+      <h2>Acciones disponibles:</h2>
+      <div class="actions">
+        <button class="btn" onclick="sendCommand('guard')">Guard</button>
+        <button class="btn" onclick="sendCommand('stop')">Stop</button>
+      </div>
+    </div>
+    <hr>
+    <div>
+      <h2>Estado del bot:</h2>
+      <pre id="botStatus"></pre>
+    </div>
+  </div>
+
+  <script>
+    function sendCommand(command) {
+      // Aquí podrías enviar comandos al servidor o a la aplicación Node.js a través de AJAX, WebSocket, etc.
+      // Por ejemplo, podrías usar fetch para enviar comandos al servidor y mostrar el estado del bot.
+      fetch('/command', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ command })
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('botStatus').textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(error => console.error('Error al enviar el comando:', error));
+    }
+  </script>
+</body>
+</html>

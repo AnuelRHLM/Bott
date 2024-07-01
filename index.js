@@ -11,7 +11,7 @@ const app = express();
 
 app.use(express.json());
 
-app.get("/", (_, res) => res.sendFile(__dirname + ""));
+app.get("/", (_, res) => res.sendFile(__dirname + "/index.html"));
 app.listen(process.env.PORT);
 
 setInterval(() => {

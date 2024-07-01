@@ -12,6 +12,7 @@ const app = express();
 app.use(express.json());
 
 
+app.listen(process.env.PORT);
 
 setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.repl.co/`);
